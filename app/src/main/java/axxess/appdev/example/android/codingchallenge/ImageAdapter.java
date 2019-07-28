@@ -2,15 +2,19 @@ package axxess.appdev.example.android.codingchallenge;
 
 import android.app.LauncherActivity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ImageAdapter extends BaseAdapter {
 
+    final String LOG_TAG = "Adapter log tag";
     private Context mContext;
     ArrayList<Items> mItems;
 
@@ -36,7 +40,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //
+        //check if container for GridView exists
         if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.list_items, null);
             ImageView imageView = convertView.findViewById(R.id.image);
@@ -45,10 +49,13 @@ public class ImageAdapter extends BaseAdapter {
         }
         Items viewData = (Items)getItem(position);
         ViewHolder viewHolder = (ViewHolder) convertView.getTag(); //gets the tag of VH
-        //reference to image stored in this view
-        viewHolder.mImageView.setImageResource(viewData.getImage());
-        //set the image resource
-        ((ImageView)convertView.findViewById(R.id.image)).setImageResource(viewData.getImage());
+
+        //Build string using ID
+        String imageURL = "https://i.imgur.com/" + viewData.getImageID() + ".jpg";
+        Log.i(LOG_TAG, imageURL);
+        //Load image using Picasso
+        Picasso.get().load(imageURL).into(viewHolder.mImageView);
+
         return convertView;
     }
 

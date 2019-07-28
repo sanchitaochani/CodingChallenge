@@ -2,18 +2,28 @@ package axxess.appdev.example.android.codingchallenge;
 
 class Items {
 
-    private int imageID;
+    private String imageID;
+    private String imageTitle;
 
-    public Items(int img) {
-        imageID = img;
+    public Items(String id, String title) {
+        imageID = id;
+        imageTitle = title;
     }
 
-    public void setImage(int image_id) {
-        imageID = image_id;
+    public void setImageID(String id) {
+        imageID = id;
     }
 
-    public int getImage() {
+    public String getImageID() {
         return imageID;
+    }
+
+    public void setImageTitle(String title) {
+        imageTitle = title;
+    }
+
+    public String getImageTitle() {
+        return imageTitle;
     }
 
 }
