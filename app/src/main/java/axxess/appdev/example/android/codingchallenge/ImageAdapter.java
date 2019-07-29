@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 
 import com.squareup.picasso.Picasso;
 
@@ -72,6 +73,8 @@ public class ImageAdapter extends BaseAdapter {
         });
         return convertView;
     }
+
+
 
     public static class ViewHolder {
         ImageView mImageView;
