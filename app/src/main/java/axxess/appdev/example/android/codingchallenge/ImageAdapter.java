@@ -1,15 +1,13 @@
 package axxess.appdev.example.android.codingchallenge;
 
-import android.app.LauncherActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,13 +15,13 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends BaseAdapter {
 
-    final String LOG_TAG = "Adapter log tag";
+    //final String LOG_TAG = "Adapter log tag";
     final static String MESSAGE_IMG_URL = "axxess.appdev.example.android.codingchallenge.imageurl";
     final static String MESSAGE_IMG_TITLE = "axxess.appdev.example.android.codingchallenge.imagetitle";
     private Context mContext;
-    ArrayList<Items> mItems;
+    private ArrayList<Items> mItems;
 
-    public ImageAdapter(Context context, ArrayList<Items> items) {
+    ImageAdapter(Context context, ArrayList<Items> items) {
         mContext = context;
         mItems = items;
     }
@@ -59,17 +57,18 @@ public class ImageAdapter extends BaseAdapter {
         String imageURL = "https://i.imgur.com/" + viewData.getImageID() + ".jpg";
         String imageTitle = viewData.getImageTitle();
         //Log.i(LOG_TAG, imageURL);
+
         //Load image using Picasso
         Picasso.get().load(imageURL).into(viewHolder.mImageView);
 
         viewHolder.mImageView.setOnClickListener( v-> {
             Intent intent = new Intent(mContext, SecondActivity.class);
+            //send url and title of image
             Bundle bundle = new Bundle();
             bundle.putString(MESSAGE_IMG_URL, imageURL);
             bundle.putString(MESSAGE_IMG_TITLE, imageTitle);
             intent.putExtras(bundle);
             mContext.startActivity(intent);
-            //mContext.startActivity(new Intent(mContext, SecondActivity.class));
         });
         return convertView;
     }
